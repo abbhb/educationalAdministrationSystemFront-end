@@ -138,7 +138,7 @@ export default {
           sessionStorage.setItem("username", datas.data.username)
           sessionStorage.setItem("email", datas.data.email)
           sessionStorage.setItem("registerTime", datas.data.registerTime)
-          sessionStorage.setItem("lastModificationTime", data.datas.lastModificationTime)
+          sessionStorage.setItem("lastModificationTime", datas.data.lastModificationTime)
 
         } else {
           that.$message.error(datas.msg);

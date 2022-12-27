@@ -61,15 +61,21 @@ export default {
             sessionStorage.setItem("id", data.data.id);
             sessionStorage.setItem("name", data.data.name);
             sessionStorage.setItem("currentTerm", "2022秋季");
+            console.log(data.data.dept)
             if (data.data.dept === 1) {
               sessionStorage.setItem("type", "admin")
+              console.log("admin")
             } else if (data.data.dept === 2) {
               sessionStorage.setItem("type", "teacher")
+              console.log("teacher")
 
             } else if (data.data.dept === 3) {
               sessionStorage.setItem("type", "student")
+              console.log("student")
+
             } else if (data.data.dept === 4) {
               sessionStorage.setItem("type", "user")
+              console.log("user")
             }
             sessionStorage.setItem("age", data.data.age)
             sessionStorage.setItem("gender", data.data.gender)
@@ -78,7 +84,20 @@ export default {
             sessionStorage.setItem("email", data.data.email)
             sessionStorage.setItem("registerTime", data.data.registerTime)
             sessionStorage.setItem("lastModificationTime", data.data.lastModificationTime)
-            router.push('/admin')
+            if (data.data.dept === 1) {
+              router.push({name:'admin'})
+            } else if (data.data.dept === 2) {
+
+              router.push({name:'teacher'})
+
+            } else if (data.data.dept === 3) {
+              router.push({name:'student'})
+
+            } else if (data.data.dept === 4) {
+              router.push({name:'user'})
+
+            }
+
           } else {
             that.$message.error(data.msg);
           }

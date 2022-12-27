@@ -10,17 +10,17 @@ export const menuData = [
             {
                 optionName: '个人信息',
                 index: '1-1',
-                routerName: "UserInfoForAdmin"
+                routerName: "UserInfoForTeacher"
             },
             {
                 optionName: '课程表展示',
                 index: '1-3',
-                routerName: "TimeTableForAdmin"
+                routerName: "TimeTableForTeacher"
             },
             {
                 optionName: '修改密码',
                 index: '1-4',
-                routerName: "ChangePasswordForAdmin"
+                routerName: "ChangePasswordForTeacher"
             }
         ]
     },
@@ -33,17 +33,17 @@ export const menuData = [
             {
                 optionName: '编辑课程',
                 index: '2-1',
-                routerName: "MDCourseForAdmin"
+                routerName: "MDCourseForTeacher"
             },
             {
                 optionName: 'test2',
                 index: '2-3',
-                routerName: "test2"
+                routerName: "test2ForTeacher"
             },
             {
                 optionName: 'test3',
                 index: '2-4',
-                routerName: "test3"
+                routerName: "test3ForTeacher"
             }
         ]
     }

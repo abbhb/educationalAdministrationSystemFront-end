@@ -12,6 +12,10 @@ import MDCourse from "@/views/publicmodel/MDCourse";
 
 
 import TimeTableForAdmin from "@/views/Admin/TimeTableForAdmin";
+import ChangePassword from "@/views/publicmodel/ChangePassword";
+
+import Teacher from "@/views/Teacher/Teacher";
+import TimeTableForTeacher from "@/views/Teacher/TimeTableForTeacher";
 
 
 export default [
@@ -53,6 +57,7 @@ export default [
 	},
 	{
 		path: '/admin',
+		name: 'admin',
 		component: Admin,
 		meta: {
 			requireAuth: true,
@@ -61,7 +66,7 @@ export default [
 		children: [
 			{
 				path: 'UserInfo',
-				name: 'UserInfo',
+				name: 'UserInfoForAdmin',
 				component: UserInfo,
 				meta:{
 					requireAuth: true,
@@ -69,8 +74,17 @@ export default [
 				}
 			},
 			{
+				path: 'changepassword',
+				name:'ChangePasswordForAdmin',
+				component: ChangePassword,
+				meta: {
+					requireAuth: true,
+					roles: ['admin']
+				}
+			},
+			{
 				path: 'MDCourse',
-				name: 'MDCourse',
+				name: 'MDCourseForAdmin',
 				component: MDCourse,
 				meta:{
 					requireAuth: true,
@@ -120,6 +134,89 @@ export default [
 				meta:{
 					requireAuth: true,
 					roles:['admin']
+				}
+			},
+		]
+	},
+	{
+		path: '/teacher',
+		name: 'teacher',
+		component: Teacher,
+		meta: {
+			requireAuth: true,
+			roles:['teacher']
+		},
+		children: [
+			{
+				path: 'UserInfo',
+				name: 'UserInfoForTeacher',
+				component: UserInfo,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'changepassword',
+				name:'ChangePasswordForTeacher',
+				component: ChangePassword,
+				meta: {
+					requireAuth: true,
+					roles: ['teacher']
+				}
+			},
+			{
+				path: 'MDCourse',
+				name: 'MDCourseForTeacher',
+				component: MDCourse,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'test',
+				name: 'test',
+				component: test,
+				meta:{
+					requireAuth: true,
+					roles:['student','teacher','user']
+				}
+			},
+			{
+				path: 'test1',
+				name: 'test1',
+				component: test1,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'test2',
+				name: 'test2ForTeacher',
+				component: test2,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'TimeTableForTeacher',
+				name: 'TimeTableForTeacher',
+				component: TimeTableForTeacher,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'test3',
+				name: 'test3ForTeacher',
+				component: test3,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
 				}
 			},
 		]

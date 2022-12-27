@@ -106,6 +106,7 @@
 
 <script>
 import { menuData } from "./mencCofig.js";
+import * as Api from "@/api/login";
 
 export default {
     data() {
@@ -209,8 +210,11 @@ export default {
                 }
             });
         },
-        onLogOut() {
-            this.$router.push("login");
+        async onLogOut() {
+          const data = await Api.loginOut()
+          console.log(data)
+          this.$message.success(data.msg);
+          this.$router.push("login");
         }
     }
 };

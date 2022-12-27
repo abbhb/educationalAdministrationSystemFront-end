@@ -11,30 +11,30 @@
       </div>
       <div class="right" style="display: flex;flex-direction: row;align-items: center;">
 
-<!--        <span>-->
-<!--            <el-dropdown @command="onLogOut">-->
-<!--                <span class="el-dropdown-link">-->
-<!--                    权限切换-->
-<!--                    <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
-<!--                </span>-->
-<!--                <el-dropdown-menu slot="dropdown">-->
-<!--                    <el-dropdown-item disabled>权限一</el-dropdown-item>-->
-<!--                    <el-dropdown-item divided>权限二</el-dropdown-item>-->
-<!--                </el-dropdown-menu>-->
-<!--            </el-dropdown>-->
-<!--        </span>-->
+        <!--        <span>-->
+        <!--            <el-dropdown @command="onLogOut">-->
+        <!--                <span class="el-dropdown-link">-->
+        <!--                    权限切换-->
+        <!--                    <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+        <!--                </span>-->
+        <!--                <el-dropdown-menu slot="dropdown">-->
+        <!--                    <el-dropdown-item disabled>权限一</el-dropdown-item>-->
+        <!--                    <el-dropdown-item divided>权限二</el-dropdown-item>-->
+        <!--                </el-dropdown-menu>-->
+        <!--            </el-dropdown>-->
+        <!--        </span>-->
         <div class="warp" style="margin-right: auto;">
-            <el-dropdown>
+          <el-dropdown>
                 <span class="el-dropdown-link">
                     <el-avatar shape="circle" :size="40"  :src="userphoto" />
-<!--                    <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+                  <!--                    <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
                 </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>{{name}}</el-dropdown-item>
-                    <el-dropdown-item @click.native="onLogOut">退出登录</el-dropdown-item>
-                    <el-dropdown-item>切换账号</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>{{name}}</el-dropdown-item>
+              <el-dropdown-item @click.native="onLogOut">退出登录</el-dropdown-item>
+              <el-dropdown-item>切换账号</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
 
       </div>
@@ -112,7 +112,7 @@ import { menuData } from "./mencCofig.js";
 import * as Api from "@/api/login";
 
 export default {
-  name:'Admin',
+  name:'Teacher',
   data() {
     return {
       // 菜单配置
@@ -231,7 +231,7 @@ export default {
       }
       else if (data.status===701){
         this.$message.error(data.msg);
-        
+
       }
 
     },

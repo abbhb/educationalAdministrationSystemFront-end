@@ -102,3 +102,18 @@ export function getCascaderList(){
         }
     });
 }
+
+
+export function changePassWord(id,username,password,newpassword,checknewpassword){
+    return request({
+        url:'/user/changepassword',
+        method:'post',
+        data:{
+            id:id,
+            username:username,
+            password:password,
+            newpassword:newpassword,
+            checknewpassword:checknewpassword
+        }
+    });
+}

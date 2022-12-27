@@ -23,6 +23,7 @@ export function inject(service) {
             switch (response.data.status) {
                 case 901:
                     //可能是token过期，清除它
+
                     sessionStorage.clear()
                     localStorage.clear()
                     router.replace({ //跳转到登录页面
