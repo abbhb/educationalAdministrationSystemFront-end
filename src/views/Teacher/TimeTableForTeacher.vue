@@ -156,7 +156,7 @@ export default {
     this.weekCourse = weekCourse;
     this.colorList = colorList;
     this.coursetime = courseTime;
-    const datas = await Api.getCascaderList()
+    const datas = await Api.getClassListByTid(sessionStorage.getItem("id"))
     // console.log(datas);
     this.options = datas.data
 

@@ -102,7 +102,15 @@ export function getCascaderList(){
         }
     });
 }
-
+export function getClassListByTid(tid){
+    return request({
+        url:'course/getclasslistbytid',
+        method:'get',
+        params:{
+            tid:tid
+        }
+    });
+}
 
 export function changePassWord(id,username,password,newpassword,checknewpassword){
     return request({

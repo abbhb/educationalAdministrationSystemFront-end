@@ -84,19 +84,7 @@ export default {
             sessionStorage.setItem("email", data.data.email)
             sessionStorage.setItem("registerTime", data.data.registerTime)
             sessionStorage.setItem("lastModificationTime", data.data.lastModificationTime)
-            if (data.data.dept === 1) {
-              router.push({name:'admin'})
-            } else if (data.data.dept === 2) {
-
-              router.push({name:'teacher'})
-
-            } else if (data.data.dept === 3) {
-              router.push({name:'student'})
-
-            } else if (data.data.dept === 4) {
-              router.push({name:'user'})
-
-            }
+            that.gotoByDept(data.data.dept)
 
           } else {
             that.$message.error(data.msg);
@@ -110,7 +98,20 @@ export default {
           //         console.log("登录失败", err);
           //     });
 
-          this.$router.push({name: "Admin"});//需要根据权限跳转，还没写完
+          // this.$router.push({name: "Admin"});//需要根据权限跳转，还没写完
+        },
+        gotoByDept(dept){
+          if (dept === 1) {
+            router.push({name:'admin'})
+          } else if (dept === 2) {
+            router.push({name:'teacher'})
+          } else if (dept === 3) {
+            router.push({name:'student'})
+
+          } else if (dept === 4) {
+            router.push({name:'user'})
+
+          }
         },
         async checkToken() {
           var that = this
@@ -138,7 +139,8 @@ export default {
             sessionStorage.setItem("email", data.data.email)
             sessionStorage.setItem("registerTime", data.data.registerTime)
             sessionStorage.setItem("lastModificationTime", data.data.lastModificationTime)
-            router.push('/admin')
+            // router.push('/admin')
+            this.gotoByDept(data.data.dept)
           } else {
             that.$message.error(data.msg);
           }
