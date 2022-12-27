@@ -1,57 +1,57 @@
 <template>
 
+  <div class="timetable w100 h100">
 
+    <div style="display: flex;flex-direction: row;padding-left: 10px;padding-top: 15px;align-self: center;">
+      <table style="align-self: center;">🪝请选择班级</table>
+      <el-cascader v-model="option" @change="elcascaderchange" :options="options" :show-all-levels="false" />
+    </div>
 
-    <div class="timetable w100 h100">
-      <div style="display: flex;flex-direction: row;padding-left: 10px;padding-top: 15px;align-self: center;">
-        <table style="align-self: center;">🪝请选择班级</table>
-        <el-cascader v-model="option" @change="elcascaderchange" :options="options" :show-all-levels="false" />
+    <div class="time-b w100" v-if="isShowTable">
+      <div class="time-detail" style="padding-left: 10px;padding-top: 15px;align-self: center;">🍀 第 {{ count }} 周课表</div>
+      <div v-if="stateforyjk" style="color: red;font-size: 48px;">已经结课了</div>
+      <div class="time-controller">
+        <el-button-group>
+          <el-button
+              type="primary"
+              icon="el-icon-arrow-left"
+              @click="changeCount(-1)"
+          ></el-button>
+          <el-button round class="date-btn" @click="gotoCount(thisweek)">本周</el-button>
+          <el-button
+              type="primary"
+              icon="el-icon-arrow-right"
+              @click="changeCount(1)"
+          ></el-button>
+        </el-button-group>
       </div>
+    </div>
+    <div class="timetable-b w100">
+      <table class="timetable-content w100">
+        <thead>
+        <tr>
+          <th></th>
+          <th v-for="(item1, index1) in weeks" :key="index1">
+            {{ "周" + numberToChinease(item1 + 1, "week") }}
 
-      <div class="time-b w100" v-if="isShowTable">
-        <div class="time-detail" style="padding-left: 10px;padding-top: 15px;align-self: center;">🍀 第 {{ count }} 周课表</div>
-        <div class="time-controller">
-          <el-button-group>
-            <el-button
-                type="primary"
-                icon="el-icon-arrow-left"
-                @click="changeCount(-1)"
-            ></el-button>
-            <el-button round class="date-btn" @click="gotoCount(thisweek)">本周</el-button>
-            <el-button
-                type="primary"
-                icon="el-icon-arrow-right"
-                @click="changeCount(1)"
-            ></el-button>
-          </el-button-group>
-        </div>
-      </div>
-      <div class="timetable-b w100">
-        <table class="timetable-content w100">
-          <thead>
-          <tr>
-            <th></th>
-            <th v-for="(item1, index1) in weeks" :key="index1">
-              {{ "周" + numberToChinease(item1 + 1, "week") }}
-
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(item2, index2) in maxCourseLength" :key="index2">
-            <td>
-              <p>{{ "第" + numberToChinease(item2) + "节" }}</p>
-              <p>
-                {{numberToTime(item2)}}
-              </p>
-            </td>
-            <template v-for="(item3, index3) in weeks">
-              <td
-                  :key="index3"
-                  :rowspan="
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item2, index2) in maxCourseLength" :key="index2">
+          <td>
+            <p>{{ "第" + numberToChinease(item2) + "节" }}</p>
+            <p>
+              {{numberToTime(item2)}}
+            </p>
+          </td>
+          <template v-for="(item3, index3) in weeks">
+            <td
+                :key="index3"
+                :rowspan="
                   showData(index3, index2 + 1).subject &&
                   showData(index3, index2).subject ===showData(index3, index2 + 1).subject? 2: ''"
-                  :style="[
+                :style="[
                   {
                     display:
                       showData(index3, index2 - 1).subject &&
@@ -61,10 +61,10 @@
                         : '',
                   },
                 ]"
-              >
-                <div
-                    class="dmsjandjs-b"
-                    :style="[
+            >
+              <div
+                  class="dmsjandjs-b"
+                  :style="[
                     {
                       background: showData(index3, index2).index
                         ? getRandomColor(showData(index3, index2).subject)
@@ -75,29 +75,29 @@
                     { padding: '4px' },
                     { height: '80%' },
                   ]"
-                >
-                  <!--                <p>-->
-                  <!--                  {{ showData(index3, index2).startTime }}-->
-                  <!--                  {{ showData(index3, index2).startTime ? "-" : "" }}-->
-                  <!--                  {{ showData(index3, index2).endTime }}-->
-                  <!--                </p>-->
-                  <div v-if="showData(index3, index2).index? true: false">
-                    <p>{{ showData(index3, index2).subject }}</p>
-                    <p>{{ showData(index3, index2).major }}</p>
-<!--                    <p>{{ showData(index3, index2).klass }}</p>-->
-                    <p>{{ showData(index3, index2).teacherName }}</p>
-                    <p>@{{ showData(index3, index2).classroom }}</p>
-                  </div>
-
+              >
+                <!--                <p>-->
+                <!--                  {{ showData(index3, index2).startTime }}-->
+                <!--                  {{ showData(index3, index2).startTime ? "-" : "" }}-->
+                <!--                  {{ showData(index3, index2).endTime }}-->
+                <!--                </p>-->
+                <div v-if="showData(index3, index2).index? true: false">
+                  <p>{{ showData(index3, index2).subject }}</p>
+                  <p>{{ showData(index3, index2).major }}</p>
+                  <!--                    <p>{{ showData(index3, index2).klass }}</p>-->
+                  <p>{{ showData(index3, index2).teacherName }}</p>
+                  <p>@{{ showData(index3, index2).classroom }}</p>
                 </div>
-              </td>
-            </template>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+
+              </div>
+            </td>
+          </template>
+        </tr>
+        </tbody>
+      </table>
     </div>
 
+  </div>
 
 </template>
 
@@ -120,6 +120,7 @@ export default {
       maxweek:0,//最大周
       option:{},//当前选项
       isShowTable:false,//默认不显示课表，当选择了班级显示课表
+      stateforyjk:false,//是否已结课
       options:[
         {
           value:1,
@@ -171,19 +172,27 @@ export default {
       this.init();
       this.sortName();
     },
-    async setMaxWeek() {
-      const data = await Api.getMaxWeek(1)//暂时拿1替代，klassid
+    async setMaxWeek(klassId) {
+      const data = await Api.getMaxWeek(klassId)//暂时拿1替代，klassid
       this.maxweek = data.data
     },
     //改变选择器次数
     async changeCount(i) {
       if (i < 0) {
         if (this.count === 1) {
+          this.$message.info("前面没有课了哦~")
           return this.count
+        }
+        if (this.count>this.maxweek){
+          this.count = this.maxweek+1;
         }
       }
       if (i>0){
         if (this.count === this.maxweek){
+          this.$message.info("后面没有课了哦~")
+          return this.count
+        }else if (this.count>this.maxweek){
+          this.$message.info("后面没有课了哦~")
           return this.count
         }
       }
@@ -271,9 +280,14 @@ export default {
     async elcascaderchange() {
       console.log(this.option[1]+"班级id")//这是班级id
       this.isShowTable = true
-      this.setMaxWeek()
-      const data = await Api.getAllCourseInfoThisWeek()
+      this.setMaxWeek(this.option[1])
+      const data = await Api.getAllCourseInfoThisWeek(this.option[1])
       this.weekCourse = data.data.resultCourseInfoList
+      if (data.data.thisweek>this.maxweek){
+        this.stateforyjk = true;
+      }else {
+        this.stateforyjk = false;
+      }
       this.count = data.data.thisweek
       this.thisweek = data.data.thisweek
       console.log("create")

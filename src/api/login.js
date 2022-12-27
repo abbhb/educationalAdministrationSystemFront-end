@@ -58,11 +58,12 @@ export function getAllCourseInfo(z,banji){
         }
     });
 }
-export function getAllCourseInfoThisWeek(){
+export function getAllCourseInfoThisWeek(klassId){
     return request({
         url:'/course/thisweekcourseinfo',
         method:'get',
         params:{
+            klassId:klassId
         }
     });
 }

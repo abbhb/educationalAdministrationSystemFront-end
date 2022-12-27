@@ -121,6 +121,7 @@ export default {
       count: 0, //上周、下周、本周选择器flag
       thisweek:0,//本周
       maxweek:0,//最大周
+      klassId:1,//klassId
     };
   },
   async created() {
@@ -128,7 +129,7 @@ export default {
     this.colorList = colorList;
     this.coursetime = courseTime;
     this.setMaxWeek()
-    const data = await Api.getAllCourseInfoThisWeek()
+    const data = await Api.getAllCourseInfoThisWeek(this.klassId)//此处结合实际班级id
     this.weekCourse = data.data.resultCourseInfoList
     this.count = data.data.thisweek
     this.thisweek = data.data.thisweek
@@ -148,7 +149,7 @@ export default {
       this.sortName();
     },
     async setMaxWeek() {
-      const data = await Api.getMaxWeek(1)//暂时拿1替代，klassid
+      const data = await Api.getMaxWeek(this.klassId)//暂时拿1替代，klassid
       this.maxweek = data.data
     },
     //改变选择器次数
