@@ -4,6 +4,7 @@
 
     <div class="time-b w100">
       <div class="time-detail">🍀 第 {{ count }} 周课表</div>
+      <div v-if="stateforyjk" style="color: red;font-size: 48px;">已经结课了</div>
       <div class="time-controller">
         <el-button-group>
           <el-button
@@ -51,11 +52,8 @@
                 :key="index3"
                 :rowspan="
                   showData(index3, index2 + 1).subject &&
-                  showData(index3, index2).subject ===
-                    showData(index3, index2 + 1).subject
-                    ? 2
-                    : ''
-                "
+                  showData(index3, index2).subject ===showData(index3, index2 + 1).subject? showData(index3, index2).length: ''
+                  "
                 :style="[
                   {
                     display:
@@ -108,6 +106,8 @@
 import { weekCourse, colorList,courseTime } from "./timetables";
 import * as Api from "@/api/login";
 
+
+
 export default {
   name:"Timetable",
   data() {
@@ -122,6 +122,7 @@ export default {
       thisweek:0,//本周
       maxweek:0,//最大周
       klassId:1,//klassId
+      stateforyjk:false,//默认未结课
     };
   },
   async created() {
@@ -129,7 +130,12 @@ export default {
     this.colorList = colorList;
     this.coursetime = courseTime;
     this.setMaxWeek()
-    const data = await Api.getAllCourseInfoThisWeek(this.klassId)//此处结合实际班级id
+    const data = await Api.getStudentAllCourseInfoThisWeek(sessionStorage.getItem("id"))//此处结合实际班级id
+    if (data.data.thisweek>this.maxweek){
+      this.stateforyjk = true;
+    }else {
+      this.stateforyjk = false;
+    }
     this.weekCourse = data.data.resultCourseInfoList
     this.count = data.data.thisweek
     this.thisweek = data.data.thisweek
@@ -141,7 +147,7 @@ export default {
   },
   methods: {
     async gotoCount(i) {
-      const data = await Api.getAllCourseInfo(i)
+      const data = await Api.getAllStudentCourseInfo(i,sessionStorage.getItem("id"))
       this.weekCourse = data.data
       this.count = i
       this.sortData();
@@ -149,24 +155,32 @@ export default {
       this.sortName();
     },
     async setMaxWeek() {
-      const data = await Api.getMaxWeek(this.klassId)//暂时拿1替代，klassid
+      const data = await Api.getStudentMaxWeek(sessionStorage.getItem("id"))//学生专用
       this.maxweek = data.data
     },
     //改变选择器次数
     async changeCount(i) {
       if (i < 0) {
         if (this.count === 1) {
+          this.$message.info("前面没有课了哦~")
           return this.count
+        }
+        if (this.count>this.maxweek){
+          this.count = this.maxweek+1;
         }
       }
       if (i>0){
         if (this.count === this.maxweek){
+          this.$message.info("后面没有课了哦~")
+          return this.count
+        }else if (this.count>this.maxweek){
+          this.$message.info("后面没有课了哦~")
           return this.count
         }
       }
       this.count += i;
-      const data = await Api.getAllCourseInfo(this.count)
-
+      console.log(this.count)
+      const data = await Api.getAllStudentCourseInfo(this.count,sessionStorage.getItem("id"))
       this.weekCourse = data.data
       this.sortData();
       this.init();

@@ -11,6 +11,7 @@ let weekCourse = [
                 teacherName:"张老师",//老师name
                 teacjerId:1,//teacherid
                 courseId:1,//课程id
+                length:2,//持续时间
             },
             {
                 index: 3,

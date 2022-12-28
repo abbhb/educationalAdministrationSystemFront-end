@@ -51,7 +51,8 @@
                   :key="index3"
                   :rowspan="
                   showData(index3, index2 + 1).subject &&
-                  showData(index3, index2).subject ===showData(index3, index2 + 1).subject? 2: ''"
+                  showData(index3, index2).subject ===showData(index3, index2 + 1).subject? showData(index3, index2).length: ''
+                  "
                   :style="[
                   {
                     display:
@@ -174,7 +175,7 @@ export default {
       this.sortName();
     },
     async setMaxWeek(klassId) {
-      const data = await Api.getMaxWeek(klassId)//暂时拿1替代，klassid
+      const data = await Api.getMaxWeek(klassId)
       this.maxweek = data.data
     },
     //改变选择器次数

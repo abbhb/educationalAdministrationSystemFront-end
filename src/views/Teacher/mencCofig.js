@@ -13,11 +13,6 @@ export const menuData = [
                 routerName: "UserInfoForTeacher"
             },
             {
-                optionName: '课程表展示',
-                index: '1-3',
-                routerName: "TimeTableForTeacher"
-            },
-            {
                 optionName: '修改密码',
                 index: '1-4',
                 routerName: "ChangePasswordForTeacher"
@@ -34,6 +29,11 @@ export const menuData = [
                 optionName: '编辑课程',
                 index: '2-1',
                 routerName: "MDCourseForTeacher"
+            },
+            {
+                optionName: '课程表展示',
+                index: '2-2',
+                routerName: "TimeTableForTeacher"
             },
             {
                 optionName: 'test2',

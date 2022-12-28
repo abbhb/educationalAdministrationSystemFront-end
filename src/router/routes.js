@@ -16,6 +16,8 @@ import ChangePassword from "@/views/publicmodel/ChangePassword";
 
 import Teacher from "@/views/Teacher/Teacher";
 import TimeTableForTeacher from "@/views/Teacher/TimeTableForTeacher";
+import Student from "@/views/Student/Student";
+import Timetable from "@/views/table/Timetable";
 
 
 export default [
@@ -217,6 +219,80 @@ export default [
 				meta:{
 					requireAuth: true,
 					roles:['teacher']
+				}
+			},
+		]
+	},
+	{
+		path: '/student',
+		name: 'student',
+		component: Student,
+		meta: {
+			requireAuth: true,
+			roles:['student']
+		},
+		children: [
+			{
+				path: 'UserInfo',
+				name: 'UserInfoForStudent',
+				component: UserInfo,
+				meta:{
+					requireAuth: true,
+					roles:['student']
+				}
+			},
+			{
+				path: 'changepassword',
+				name:'ChangePasswordForStudent',
+				component: ChangePassword,
+				meta: {
+					requireAuth: true,
+					roles: ['student']
+				}
+			},
+			{
+				path: 'test',
+				name: 'test',
+				component: test,
+				meta:{
+					requireAuth: true,
+					roles:['student','teacher','user']
+				}
+			},
+			{
+				path: 'test1',
+				name: 'test1',
+				component: test1,
+				meta:{
+					requireAuth: true,
+					roles:['teacher']
+				}
+			},
+			{
+				path: 'test2',
+				name: 'test2ForStudent',
+				component: test2,
+				meta:{
+					requireAuth: true,
+					roles:['student']
+				}
+			},
+			{
+				path: 'TimeTableForStudent',
+				name: 'TimeTableForStudent',
+				component: Timetable,
+				meta:{
+					requireAuth: true,
+					roles:['student']
+				}
+			},
+			{
+				path: 'test3',
+				name: 'test3ForStudent',
+				component: test3,
+				meta:{
+					requireAuth: true,
+					roles:['student']
 				}
 			},
 		]

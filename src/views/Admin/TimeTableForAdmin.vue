@@ -50,7 +50,8 @@
                 :key="index3"
                 :rowspan="
                   showData(index3, index2 + 1).subject &&
-                  showData(index3, index2).subject ===showData(index3, index2 + 1).subject? 2: ''"
+                  showData(index3, index2).subject ===showData(index3, index2 + 1).subject? showData(index3, index2).length: ''
+                  "
                 :style="[
                   {
                     display:

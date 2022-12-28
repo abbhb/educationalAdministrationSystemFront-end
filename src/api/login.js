@@ -54,10 +54,21 @@ export function getAllCourseInfo(z,banji){
         method:'post',
         data:{
             banji:banji,
-            z:z//周
+            z:z,//周
         }
     });
 }
+export function getAllStudentCourseInfo(z,id){
+    return request({
+        url:'/course/student/courseinfo',
+        method:'post',
+        data:{
+            z:z,
+            id:id,//周
+        }
+    });
+}
+
 export function getAllCourseInfoThisWeek(klassId){
     return request({
         url:'/course/thisweekcourseinfo',
@@ -67,6 +78,17 @@ export function getAllCourseInfoThisWeek(klassId){
         }
     });
 }
+
+export function getStudentAllCourseInfoThisWeek(sid){
+    return request({
+        url:'/course/student/thisweekcourseinfo',
+        method:'get',
+        params:{
+            sid:sid
+        }
+    });
+}
+
 export function deleteCourseById(id){
     return request({
         url:'/course/deletecourseinfobyid',
@@ -86,6 +108,17 @@ export function getMaxWeek(klassid){
         }
     });
 }
+
+export function getStudentMaxWeek(sid){
+    return request({
+        url:'/course/student/courseinfo/maxweek',
+        method:'post',
+        data:{
+            sid:sid
+        }
+    });
+}
+
 export function getTeacherByCourseId(id){
     return request({
         url:'/teacher/getcourseteacher',

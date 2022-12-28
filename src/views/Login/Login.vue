@@ -145,29 +145,7 @@ export default {
             that.$message.error(data.msg);
           }
         }
-        // onWebSocket() {
-        //     let count = 1;
-        //     let ws = new WebSocket("ws://127.0.0.1:8888/websocket");
-        //     ws.onopen = function(evt) {
-        //         console.log("Connection open ...");
-        //         console.log(evt);
-        //     };
 
-        //     ws.onmessage = function(evt) {
-        //         console.log("后端发来的数据: " + evt.data);
-        //         if (count++ == 10) ws.close();
-        //     };
-
-        //     ws.onclose = function(evt) {
-        //         console.log(evt);
-        //         console.log("Connection closed.");
-        //     };
-
-        //     ws.onerror = function(evt) {
-        //         console.log(evt);
-        //         console.log("error!!!");
-        //     };
-        // }
     }
 };
 </script>

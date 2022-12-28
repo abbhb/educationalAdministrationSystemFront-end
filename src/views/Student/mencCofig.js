@@ -10,40 +10,35 @@ export const menuData = [
             {
                 optionName: '个人信息',
                 index: '1-1',
-                routerName: "UserInfoForAdmin"
+                routerName: "UserInfoForStudent"
             },
             {
                 optionName: '修改密码',
                 index: '1-4',
-                routerName: "ChangePasswordForAdmin"
+                routerName: "ChangePasswordForStudent"
             }
         ]
     },
     {
-        optionName: "课程管理",
+        optionName: "课程信息",
         iconClassName: "el-icon-setting",
         index: '2',
         disabled: false, // 是否禁用
         childList: [
             {
-                optionName: '编辑课程',
-                index: '2-1',
-                routerName: "MDCourseForAdmin"
-            },
-            {
                 optionName: '课程表展示',
-                index: '2-2',
-                routerName: "TimeTableForAdmin"
+                index: '2-1',
+                routerName: "TimeTableForStudent"
             },
             {
                 optionName: 'test2',
                 index: '2-3',
-                routerName: "test2"
+                routerName: "test2ForStudent"
             },
             {
                 optionName: 'test3',
                 index: '2-4',
-                routerName: "test3"
+                routerName: "test3ForStudent"
             }
         ]
     }
